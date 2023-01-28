@@ -4,7 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 
-import './Card.module.css';
+import styles from './Card.module.css';
 
 interface CardProps {
   title: string;
@@ -13,7 +13,7 @@ interface CardProps {
 
 export default function CustomCard({ title }: CardProps) {
   return (
-    <Card className="Card" sx={{
+    <Card className={styles.Card} sx={{
       maxWidth: 345, minWidth: 200,
       minHeight: 300, margin: 5
     }}>

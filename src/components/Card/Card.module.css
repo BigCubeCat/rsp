@@ -1,7 +1,10 @@
 .Card {
-    opacity: 0;
+  transition: 2s;
 }
 
 .Card:hover {
-  opacity: 1;
+  box-shadow: 0 0 3px;
+  position:relative;
+  top: -15px;
 }
+
