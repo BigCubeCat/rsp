@@ -2,7 +2,7 @@ import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { Button } from '@mui/material';
+import { Button, Box } from '@mui/material';
 
 import styles from './Card.module.css';
 
@@ -18,15 +18,21 @@ export default function CustomCard({ title }: CardProps) {
       minHeight: 300, margin: 5
     }}>
       <CardContent sx={{
-        display: 'flex',
-        justifyContent: 'space-around',
-        flexDirection: 'column'
+        minHeight: "100%",
       }}>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography variant="h5" component="div" textAlign="center">
           {title}
         </Typography>
-        <Button>Играть</Button>
-        <Button>Правила</Button>
+        <Box sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 150,
+          marginTop: 5,
+          justifyContent: 'space-around',
+        }}>
+          <Button>Играть</Button>
+          <Button>Правила</Button>
+        </Box>
       </CardContent>
     </Card>
   );
