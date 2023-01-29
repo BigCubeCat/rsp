@@ -3,15 +3,19 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { Button, Box } from '@mui/material';
+import { Link } from "react-router-dom";
+
 
 import styles from './Card.module.css';
 
 interface CardProps {
   title: string;
   img?: string;
+  rulesLink: string;
 }
 
-export default function CustomCard({ title }: CardProps) {
+export default function CustomCard(props: CardProps) {
+  //TODO: create card images (images in public/img)
   return (
     <Card className={styles.Card} sx={{
       maxWidth: 345, minWidth: 200,
@@ -21,7 +25,7 @@ export default function CustomCard({ title }: CardProps) {
         minHeight: "100%",
       }}>
         <Typography variant="h5" component="div" textAlign="center">
-          {title}
+          {props.title}
         </Typography>
         <Box sx={{
           display: 'flex',
@@ -30,8 +34,15 @@ export default function CustomCard({ title }: CardProps) {
           marginTop: 5,
           justifyContent: 'space-around',
         }}>
-          <Button>Играть</Button>
-          <Button>Правила</Button>
+          <Button
+            variant="outlined"
+            color="secondary"
+          >Играть</Button>
+          <Button
+            variant="outlined"
+            component={Link}
+            to={props.rulesLink}
+          >Правила</Button>
         </Box>
       </CardContent>
     </Card>
