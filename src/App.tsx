@@ -37,10 +37,10 @@ export default function App() {
         }}>
           <Routes>
             <Route path="/" element={<Main />} />
-            <Route path="/about" element={<div>text</div>} />
+            <Route path="/about" element={<Main />} />
             <Route path="/about/classic" element={<Rules index={0} />} />
             <Route path="/about/five" element={<Rules index={1} />} />
-            <Route path="/about/custom" element={<div>text</div>} />
+            <Route path="/about/custom" element={<div>TODO</div>} />
           </Routes>
         </Box>
 

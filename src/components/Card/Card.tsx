@@ -10,7 +10,7 @@ import styles from './Card.module.css';
 
 interface CardProps {
   title: string;
-  img?: string;
+  img: string;
   rulesLink: string;
 }
 
@@ -27,6 +27,7 @@ export default function CustomCard(props: CardProps) {
         <Typography variant="h5" component="div" textAlign="center">
           {props.title}
         </Typography>
+        <img src={props.img} width="180" height="180" style={{ marginTop: 10 }} />
         <Box sx={{
           display: 'flex',
           flexDirection: 'column',
