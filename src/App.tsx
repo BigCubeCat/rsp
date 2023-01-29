@@ -44,6 +44,8 @@ export default function App() {
             <Route path="/about/custom" element={<div>TODO</div>} />
 
             <Route path="/game/classic" element={<Game mode={"classic"} />} />
+            <Route path="/game/spock" element={<Game mode={"spock"} />} />
+            <Route path="/game/custom" element={<Game mode={"spock"} />} />
           </Routes>
         </Box>
       </Box>

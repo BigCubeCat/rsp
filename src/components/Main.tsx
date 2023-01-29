@@ -17,13 +17,13 @@ export default function Main() {
       <Card
         title={"..., Lizard, Spock"}
         rulesLink={"/about/five"}
-        gameLink={"/about/five"}
+        gameLink={"/game/spock"}
         img="/img/5.svg"
       />
       <Card
         title={"Classic"}
         rulesLink={"/about/custom"}
-        gameLink={"/about/custom"}
+        gameLink={"/game/custom"}
         img="/img/classic.jpg"
       />
     </>
