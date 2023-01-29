@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box, Card, CardHeader, Typography, Button, Paper
 } from '@mui/material';
 import GameButton from './GameButton';
-import { elements } from './GameElements';
+import { elements, IElement, elementKeys } from './GameElements';
+import { GetClassic } from '../../api/bot';
 
 interface GameProps {
   mode: "classic" | "spock" | "custom";
@@ -16,8 +17,24 @@ const styles = {
 };
 
 export default function Game({ mode }: GameProps) {
-  let gameButtons: JSX.Element[] = [
-  ]
+  const [userOption, setUserOption] = useState<IElement>(
+    { name: "", color: "", img: "" }
+  );
+  const [botOption, setBotOption] = useState<IElement>(
+    { name: "", color: "", img: "" }
+  );
+
+  const GetBotAnswer = () => {
+    GetClassic().then(result => {
+      for (let element of elements) {
+        if (element.name == result) {
+          setBotOption(element);
+        }
+      }
+    })
+  }
+
+  let gameButtons: JSX.Element[] = [];
   let count = (mode === "classic") ? 3 : 5;
   for (let i = 0; i < count; ++i) {
     gameButtons.push(
@@ -25,7 +42,7 @@ export default function Game({ mode }: GameProps) {
         key={"GameButton" + i}
         img={elements[i].img}
         color={elements[i].color}
-        func={() => console.log('Man...')}
+        func={() => { setUserOption(elements[i]); GetBotAnswer(); }}
       />
     )
   }
@@ -46,9 +63,19 @@ export default function Game({ mode }: GameProps) {
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <Box>
           <Typography variant="h6" textAlign="center">Вы выбрали:</Typography>
+          {
+            (userOption.name != "") && <GameButton
+              color={userOption.color} img={userOption.img} func={() => { }}
+            />
+          }
         </Box>
         <Box>
-          <Typography variant="h6" textAlign="center">Вы выбрали:</Typography>
+          <Typography variant="h6" textAlign="center">Бот выбрал:</Typography>
+          {
+            (botOption.name != "") && <GameButton
+              color={botOption.color} img={botOption.img} func={() => { }}
+            />
+          }
         </Box>
       </Box>
     </Card>

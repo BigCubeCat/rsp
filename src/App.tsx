@@ -2,7 +2,6 @@ import * as React from 'react';
 import Main from './components/Main';
 import Rules from './components/Rules/Rules';
 import Game from './components/Game/Game';
-import { getClassic } from './api/bot';
 
 import { Routes, Route } from "react-router-dom";
 import {
@@ -24,9 +23,6 @@ const theme = createTheme({
 });
 
 export default function App() {
-  console.log(
-  getClassic("https://shift-winter-2023-backend.onrender.com/api/rsp/option").then(c => console.log(c))
-  )
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{

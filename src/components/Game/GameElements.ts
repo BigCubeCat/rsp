@@ -1,18 +1,31 @@
-export const elements = [
+export interface IElement {
+  name: string;
+  img: string;
+  color: string;
+}
+
+export const elements: IElement[] = [
   {
-    img: "/img/rock.png", color: "#fbd165"
+    name: "rock", img: "/img/rock.png", color: "#fbd165"
   },
   {
-    img: "/img/paper.png", color: "#f4b1c0"
+    name: "paper", img: "/img/paper.png", color: "#f4b1c0"
   },
   {
-    img: "/img/scissors.png", color: "#a9cc8a"
+    name: "scissors", img: "/img/scissors.png", color: "#a9cc8a"
   },
   {
-    img: "/img/lizzard.png", color: "#a9fba9"
+    name: "lizzard", img: "/img/lizzard.png", color: "#a9fba9"
   },
   {
-    img: "/img/spock.png", color: "#c0b1f4"
+    name: "spock", img: "/img/spock.png", color: "#c0b1f4"
   }
 ]
 
+export const elementKeys = {
+  "rock": elements[0],
+  "paper": elements[1],
+  "scissors": elements[2],
+  "lizzard": elements[3],
+  "spock": elements[4],
+}

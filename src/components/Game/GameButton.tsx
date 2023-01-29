@@ -8,7 +8,6 @@ interface GameButtonProps {
 }
 
 export default function GameButton(props: GameButtonProps) {
-  console.log(props.color)
   return (
     <div
       className={styles.But}

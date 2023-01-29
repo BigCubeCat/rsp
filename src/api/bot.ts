@@ -1,14 +1,12 @@
-type Result = {
-  result: string;
-}
+const API_URL = "https://shift-winter-2023-backend.onrender.com/api/rsp/option";
 
-async function getClassic(url: string): Promise<string> {
-  const result = await fetch(url, {
+async function GetBotAnswer(options: string[]): Promise<string> {
+  const result = await fetch(API_URL, {
     method: "POST", headers: {
       'Content-Type': 'application/json'
       // 'Content-Type': 'application/x-www-form-urlencoded',
     },
-    body: JSON.stringify({ "options": ["r", "p", "s"] })
+    body: JSON.stringify({ "options": options })
   })
     .then(response => {
       if (!response.ok) {
@@ -20,5 +18,13 @@ async function getClassic(url: string): Promise<string> {
   return result;
 }
 
+async function GetClassic(): Promise<string> {
+  return GetBotAnswer(["rock", "scissors", "paper"]);
+}
 
-export { getClassic };
+async function GetSpock(): Promise<string> {
+  return GetBotAnswer(["rock", "scissors", "paper", "lizzard", "spock"]);
+}
+
+export { GetBotAnswer, GetClassic, GetSpock };
+
