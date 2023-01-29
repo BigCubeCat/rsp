@@ -2,9 +2,9 @@ type Result = {
   result: string;
 }
 
-function getClassic<Result>(url: string): Promise<Result> {
-  return fetch(url, {
-    method: "POST", mode: "cors", headers: {
+async function getClassic(url: string): Promise<string> {
+  const result = await fetch(url, {
+    method: "POST", headers: {
       'Content-Type': 'application/json'
       // 'Content-Type': 'application/x-www-form-urlencoded',
     },
@@ -16,7 +16,8 @@ function getClassic<Result>(url: string): Promise<Result> {
       }
       return response.json()
     })
-
+    .then(json => json.result)
+  return result;
 }
 
 

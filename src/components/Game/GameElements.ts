@@ -12,7 +12,7 @@ export const elements = [
     img: "/img/lizzard.png", color: "#a9fba9"
   },
   {
-    img: "/img/spock.png", color: "#a98af4"
+    img: "/img/spock.png", color: "#c0b1f4"
   }
 ]
 
