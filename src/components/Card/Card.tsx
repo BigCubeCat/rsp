@@ -12,6 +12,7 @@ interface CardProps {
   title: string;
   img: string;
   rulesLink: string;
+  gameLink: string;
 }
 
 export default function CustomCard(props: CardProps) {
@@ -38,6 +39,8 @@ export default function CustomCard(props: CardProps) {
           <Button
             variant="outlined"
             color="secondary"
+            component={Link}
+            to={props.gameLink}
           >Играть</Button>
           <Button
             variant="outlined"
