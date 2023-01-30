@@ -30,7 +30,8 @@ export default function App() {
         display: 'flex',
         justifyContent: 'center',
         flexDirection: 'column',
-        minHeight: '100vh'
+        minHeight: '100vh',
+        backgroundImage: "/img/bg1.jpg",
       }}>
         <Box sx={{
           display: 'flex',
@@ -48,7 +49,7 @@ export default function App() {
             <Route path="/game/spock" element={<Game mode={"spock"} />} />
             <Route path="/game/custom" element={<Game mode={"spock"} />} />
 
-            <Route path="/statistic" element={<HistoryTable /> } />
+            <Route path="/statistic" element={<HistoryTable />} />
           </Routes>
         </Box>
       </Box>
