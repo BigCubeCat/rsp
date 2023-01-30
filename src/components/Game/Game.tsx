@@ -82,7 +82,7 @@ export default function Game({ mode, rules }: GameProps) {
   }
   return (
     <Card sx={{
-      minWidth: 400, minHeight: 400,
+      minHeight: 400,
       maxWidth: 700, padding: 5
     }}>
       <CardHeader title={
@@ -93,7 +93,7 @@ export default function Game({ mode, rules }: GameProps) {
       {(gameResult === 0) ?
         <>
           <Typography variant="h6" textAlign={"center"}> Ваш выбор:</Typography>
-          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Box sx={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}>
             {gameButtons}
           </Box>
         </> : <Result result={gameResult} />

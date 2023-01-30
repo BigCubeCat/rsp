@@ -16,7 +16,7 @@ export default function Rules({ mode }: { mode: string }) {
 
       } />
       <Box sx={{
-        maxWidth: 600, display: "flex", justifyContent: "space-between"
+        maxWidth: 600, display: "flex", justifyContent: "space-between", flexWrap: "wrap"
       }}>
         <Typography component="div" sx={{ marginTop: 5 }}>
           {content.body}
