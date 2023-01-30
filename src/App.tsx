@@ -39,9 +39,9 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/about" element={<Main />} />
-            <Route path="/about/classic" element={<Rules index={0} />} />
-            <Route path="/about/spock" element={<Rules index={1} />} />
-            <Route path="/about/custom" element={<div>TODO</div>} />
+            <Route path="/about/classic" element={<Rules mode={"classic"} />} />
+            <Route path="/about/spock" element={<Rules mode={"spock"} />} />
+            <Route path="/about/custom" element={<Rules mode={"custom"} />} />
 
             <Route path="/game/classic" element={<Game mode={"classic"} />} />
             <Route path="/game/spock" element={<Game mode={"spock"} />} />

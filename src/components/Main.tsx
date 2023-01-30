@@ -16,7 +16,7 @@ export default function Main() {
       />
       <Card
         title={"..., Lizard, Spock"}
-        rulesLink={"/about/five"}
+        rulesLink={"/about/spock"}
         gameLink={"/game/spock"}
         img="/img/5.svg"
       />
