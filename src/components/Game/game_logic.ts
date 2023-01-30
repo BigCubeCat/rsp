@@ -3,6 +3,7 @@ import { Rules } from './rules';
 type result = 1 | 2 | 3;
 
 export function gameResult(rules: Rules, first: string, second: string): result {
+  console.log(first)
   if (first === second) {
     return 1;
   }

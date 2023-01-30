@@ -15,7 +15,7 @@ export const elements: IElement[] = [
     name: "scissors", img: "/img/scissors.png", color: "#a9cc8a"
   },
   {
-    name: "lizzard", img: "/img/lizzard.png", color: "#a9fba9"
+    name: "lizard", img: "/img/lizzard.png", color: "#a9fba9"
   },
   {
     name: "spock", img: "/img/spock.png", color: "#c0b1f4"
