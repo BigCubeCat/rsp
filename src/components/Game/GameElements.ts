@@ -22,10 +22,10 @@ export const elements: IElement[] = [
   }
 ]
 
-export const elementKeys = {
+export const elementKeys: {[key: string]: IElement} = {
   "rock": elements[0],
   "paper": elements[1],
   "scissors": elements[2],
-  "lizzard": elements[3],
+  "lizard": elements[3],
   "spock": elements[4],
 }

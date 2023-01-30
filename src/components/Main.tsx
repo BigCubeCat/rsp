@@ -1,8 +1,6 @@
 import * as React from 'react';
-import {
-  Box
-} from '@mui/material';
-
+import { Box } from '@mui/material';
+import HistoryCard from './History/HistoryCard';
 import Card from './Card/Card';
 
 export default function Main() {
@@ -26,6 +24,7 @@ export default function Main() {
         gameLink={"/game/custom"}
         img="/img/classic.jpg"
       />
+      <HistoryCard />
     </>
   )
 }

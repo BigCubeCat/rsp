@@ -23,7 +23,7 @@ async function GetClassic(): Promise<string> {
 }
 
 async function GetSpock(): Promise<string> {
-  return GetBotAnswer(["rock", "scissors", "paper", "lizzard", "spock"]);
+  return GetBotAnswer(["rock", "scissors", "paper", "lizard", "spock"]);
 }
 
 export { GetBotAnswer, GetClassic, GetSpock };

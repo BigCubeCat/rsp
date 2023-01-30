@@ -5,8 +5,8 @@ import {
 import GameButton from './GameButton';
 import Loading from './Loading';
 import { Result } from './Result';
-import { elements, IElement } from './GameElements';
-import { GetClassic } from '../../api/bot';
+import { elements, IElement, elementKeys } from './GameElements';
+import { GetClassic, GetSpock } from '../../api/bot';
 import { gameResult as playTheGame } from './game_logic';
 import { Rules, classicRules, spockRules } from './rules';
 import { Link } from "react-router-dom";
@@ -54,17 +54,11 @@ export default function Game({ mode, rules }: GameProps) {
       return;
     }
     setUserOption(userElement);
-    const res = await GetClassic().then(result => {
-      for (let element of elements) {
-        if (element.name == result) {
-          return element;
-        }
-      }
-      return elements[0];
-    })
-    setBotOption(res);
+    // TODO: Custom
+    const res: string = (mode === "classic") ? await GetClassic() : await GetSpock();
+    setBotOption(elementKeys[res]);
     await delay(1100);
-    const result = playTheGame(gameRules, userElement.name, res.name);
+    const result = playTheGame(gameRules, userElement.name, res);
     setGameResult(result);
   }
 

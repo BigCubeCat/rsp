@@ -10,7 +10,6 @@ import {
 
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Header from './components/Header/Header';
 
 const theme = createTheme({
   palette: {
@@ -32,7 +31,6 @@ export default function App() {
         flexDirection: 'column',
         minHeight: '100vh'
       }}>
-        <Header title={"Камень, ножницы, бумага"} />
         <Box sx={{
           display: 'flex',
           justifyContent: 'center',
