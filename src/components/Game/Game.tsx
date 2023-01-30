@@ -50,6 +50,9 @@ export default function Game({ mode, rules }: GameProps) {
   const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
 
   const submitResult = async (userElement: IElement) => {
+    if (userOption.name !== "") {
+      return;
+    }
     setUserOption(userElement);
     const res = await GetClassic().then(result => {
       for (let element of elements) {
