@@ -1,11 +1,54 @@
+type GameResultRow = {
+  name: string;
+  date: Date;
+  result: "win" | "loose" | "draw";
+}
+
 type Storage = {
   winRate: number;
-  history: string[];
-  countClassic: number;
-  countSpock: number;
+  history: GameResultRow[];
+}
+
+const defaultStorage: Storage = {
+  winRate: 0,
+  history: [],
+}
+
+export function SetDefaultStorage() {
+  localStorage.clear();
+  localStorage.setItem("winRate", "" + defaultStorage.winRate);
+  localStorage.setItem("history", JSON.stringify(defaultStorage.history));
+}
+
+export function GetHistory(): GameResultRow[] {
+  const res = JSON.parse(localStorage.history);
+  if (res === undefined) {
+    SetDefaultStorage();
+    return [];
+  }
+  return res;
+}
+
+export function GetPercent(): number {
+  const res = localStorage.winRate;
+  if (res === undefined) {
+    SetDefaultStorage();
+    return 0;
+  }
+  return res;
 }
 
 
-export function getStorage() {
-  localStorage.getItem("winRate")
+export function AddGame(name: string, result: "win" | "loose" | "draw") {
+  let history = GetHistory();
+  history.push({ result: result, date: new Date(), name: name });
+  let countWin = 0;
+  for (let r of history) {
+    if (r.result === "win") {
+      countWin++;
+    }
+  }
+  console.log(countWin, history.length)
+  localStorage.setItem("winRate", "" + Math.floor(countWin / history.length * 100));
+  localStorage.setItem("history", JSON.stringify(history));
 }

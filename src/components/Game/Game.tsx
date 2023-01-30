@@ -10,6 +10,9 @@ import { GetClassic, GetSpock } from '../../api/bot';
 import { gameResult as playTheGame } from './game_logic';
 import { Rules, classicRules, spockRules } from './rules';
 import { Link } from "react-router-dom";
+import { AddGame } from "../History/history";
+import { useAppSelector } from '../../app/hooks';
+import { selectUser, setUserName } from '../../features/user/userSlice';
 
 interface GameProps {
   mode: "classic" | "spock" | "custom";
@@ -23,6 +26,7 @@ const styles = {
 };
 
 export default function Game({ mode, rules }: GameProps) {
+  const userName = useAppSelector(selectUser);
   // 0 - no result
   // 1 - draw
   // 2 - user win
@@ -60,6 +64,10 @@ export default function Game({ mode, rules }: GameProps) {
     await delay(1100);
     const result = playTheGame(gameRules, userElement.name, res);
     setGameResult(result);
+    AddGame(
+      userName.name,
+      (result === 1) ? "draw" : (result === 2) ? "win" : "loose"
+    );
   }
 
   let gameButtons: JSX.Element[] = [];
