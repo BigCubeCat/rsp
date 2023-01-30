@@ -5,6 +5,7 @@ import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import styles from '../Card/Card.module.css';
 import { GetPercent, SetDefaultStorage } from './history'
+import { Link } from 'react-router-dom';
 
 interface CardProps {
   title?: string;
@@ -61,6 +62,8 @@ export default function HistoryCard(props: CardProps) {
           <Button
             variant="outlined"
             color="secondary"
+            component={Link}
+            to="/statistic"
           >Подробнее</Button>
           <Button
             onClick={() => SetDefaultStorage()}

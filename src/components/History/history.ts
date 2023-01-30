@@ -1,4 +1,4 @@
-type GameResultRow = {
+export type GameResultRow = {
   name: string;
   date: Date;
   result: "win" | "loose" | "draw";

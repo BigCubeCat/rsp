@@ -2,6 +2,7 @@ import * as React from 'react';
 import Main from './components/Main';
 import Rules from './components/Rules/Rules';
 import Game from './components/Game/Game';
+import HistoryTable from './components/History/HistoryTable';
 
 import { Routes, Route } from "react-router-dom";
 import {
@@ -46,6 +47,8 @@ export default function App() {
             <Route path="/game/classic" element={<Game mode={"classic"} />} />
             <Route path="/game/spock" element={<Game mode={"spock"} />} />
             <Route path="/game/custom" element={<Game mode={"spock"} />} />
+
+            <Route path="/statistic" element={<HistoryTable /> } />
           </Routes>
         </Box>
       </Box>
