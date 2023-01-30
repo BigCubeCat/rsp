@@ -6,8 +6,9 @@ export function gameResult(rules: Rules, first: string, second: string): result 
   if (first === second) {
     return 1;
   }
+  console.log(rules)
   for (let value of rules[first]) {
-    if (value === second) {
+    if (value == second) {
       return 2;
     }
   }

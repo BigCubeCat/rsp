@@ -4,6 +4,7 @@ import {
 } from '@mui/material';
 import GameButton from './GameButton';
 import Loading from './Loading';
+import { Result } from './Result';
 import { elements, IElement } from './GameElements';
 import { GetClassic } from '../../api/bot';
 import { gameResult as playTheGame } from './game_logic';
@@ -40,14 +41,16 @@ export default function Game({ mode, rules }: GameProps) {
     { name: "", color: "", img: "" }
   );
 
-  const GetBotAnswer = () => {
-    GetClassic().then(result => {
+  const GetBotAnswer = async () => {
+    const res = await GetClassic().then(result => {
       for (let element of elements) {
         if (element.name == result) {
-          setBotOption(element);
+          return element;
         }
       }
+      return elements[0];
     })
+    setBotOption(res);
   }
 
   const ReloadGame = () => {
@@ -60,9 +63,18 @@ export default function Game({ mode, rules }: GameProps) {
 
   const submitResult = async (userElement: IElement) => {
     setUserOption(userElement);
-    GetBotAnswer();
+    const res = await GetClassic().then(result => {
+      for (let element of elements) {
+        if (element.name == result) {
+          return element;
+        }
+      }
+      return elements[0];
+    })
+    setBotOption(res);
     await delay(1100);
-    setGameResult(playTheGame(gameRules, userElement.name, botOption.name));
+    const result = playTheGame(gameRules, userElement.name, res.name);
+    setGameResult(result);
   }
 
   let gameButtons: JSX.Element[] = [];
@@ -84,7 +96,7 @@ export default function Game({ mode, rules }: GameProps) {
     }}>
       <CardHeader title={
         <Typography gutterBottom variant="h5" component="div">
-          Lizard
+          {mode === "classic" ? "Камень, Ножницы, Бумага" : "Камень, Ножницы, Бумага и другие"}
         </Typography>}>
       </CardHeader >
       {(gameResult === 0) ?
@@ -93,7 +105,7 @@ export default function Game({ mode, rules }: GameProps) {
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
             {gameButtons}
           </Box>
-        </> : <Alert sx={{ margin: 10 }} severity="error">Вы проиграли!</Alert>
+        </> : <Result result={gameResult} />
       }
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <Box>
