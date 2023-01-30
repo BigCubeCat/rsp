@@ -26,7 +26,7 @@ const styles = {
 };
 
 export default function Game({ mode, rules }: GameProps) {
-  const userName = useAppSelector(selectUser);
+  const user = useAppSelector(selectUser);
   // 0 - no result
   // 1 - draw
   // 2 - user win
@@ -64,8 +64,9 @@ export default function Game({ mode, rules }: GameProps) {
     await delay(1100);
     const result = playTheGame(gameRules, userElement.name, res);
     setGameResult(result);
+    console.log(user)
     AddGame(
-      userName.name,
+      user.name,
       (result === 1) ? "draw" : (result === 2) ? "win" : "loose"
     );
   }

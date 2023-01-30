@@ -49,9 +49,10 @@ export default function HistoryCard(props: CardProps) {
         <Typography variant="h5" component="div" textAlign="center">
           Статистика
         </Typography>
-        <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <Box sx={{ display: "flex", justifyContent: "center", marginBottom: 1 }}>
           <Rate title={"Процент побед"} percent={percent} />
         </Box>
+        <StyledInput />
         <Box sx={{
           display: 'flex',
           flexDirection: "column",
@@ -66,7 +67,10 @@ export default function HistoryCard(props: CardProps) {
             to="/statistic"
           >Подробнее</Button>
           <Button
-            onClick={() => SetDefaultStorage()}
+            onClick={() => {
+              SetDefaultStorage();
+              setPercent(GetPercent());
+            }}
             variant="outlined"
           >Очистить</Button>
         </Box>
