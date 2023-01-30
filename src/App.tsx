@@ -40,7 +40,7 @@ export default function App() {
             <Route path="/" element={<Main />} />
             <Route path="/about" element={<Main />} />
             <Route path="/about/classic" element={<Rules index={0} />} />
-            <Route path="/about/five" element={<Rules index={1} />} />
+            <Route path="/about/spock" element={<Rules index={1} />} />
             <Route path="/about/custom" element={<div>TODO</div>} />
 
             <Route path="/game/classic" element={<Game mode={"classic"} />} />

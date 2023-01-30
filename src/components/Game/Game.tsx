@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Box, Card, CardHeader, Typography, Alert
+  Box, Card, CardHeader, Typography, Alert, Button
 } from '@mui/material';
 import GameButton from './GameButton';
 import Loading from './Loading';
@@ -9,6 +9,7 @@ import { elements, IElement } from './GameElements';
 import { GetClassic } from '../../api/bot';
 import { gameResult as playTheGame } from './game_logic';
 import { Rules, classicRules, spockRules } from './rules';
+import { Link } from "react-router-dom";
 
 interface GameProps {
   mode: "classic" | "spock" | "custom";
@@ -40,19 +41,6 @@ export default function Game({ mode, rules }: GameProps) {
   const [botOption, setBotOption] = useState<IElement>(
     { name: "", color: "", img: "" }
   );
-
-  const GetBotAnswer = async () => {
-    const res = await GetClassic().then(result => {
-      for (let element of elements) {
-        if (element.name == result) {
-          return element;
-        }
-      }
-      return elements[0];
-    })
-    setBotOption(res);
-  }
-
   const ReloadGame = () => {
     setBotOption({ name: "", color: "", img: "" });
     setUserOption({ name: "", color: "", img: "" });
@@ -107,7 +95,7 @@ export default function Game({ mode, rules }: GameProps) {
           </Box>
         </> : <Result result={gameResult} />
       }
-      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+      <Box sx={{ display: "flex", justifyContent: "space-between", marginTop: 5 }}>
         <Box>
           <Typography variant="h6" textAlign="center">Вы выбрали:</Typography>
           {
@@ -124,6 +112,13 @@ export default function Game({ mode, rules }: GameProps) {
             /> : <Loading />
           }
         </Box>
+      </Box>
+      <Box sx={{ display: "flex", justifyContent: "space-around", marginTop: 5 }}>
+        {(botOption.name !== "") ?
+          <Button variant="outlined" onClick={() => ReloadGame()}>Переиграть</Button>
+          : <Button variant="outlined" component={Link} to={"/about/" + mode}>Правила</Button>
+        }
+        <Button variant="outlined" color="secondary" component={Link} to={"/"}>Выйти</Button>
       </Box>
     </Card>
   )
