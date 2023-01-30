@@ -3,6 +3,7 @@ import {
   Box, Card, CardHeader, Typography, Alert
 } from '@mui/material';
 import GameButton from './GameButton';
+import Loading from './Loading';
 import { elements, IElement } from './GameElements';
 import { GetClassic } from '../../api/bot';
 import { gameResult as playTheGame } from './game_logic';
@@ -106,9 +107,9 @@ export default function Game({ mode, rules }: GameProps) {
         <Box>
           <Typography variant="h6" textAlign="center">Бот выбрал:</Typography>
           {
-            (botOption.name !== "") && <GameButton
+            (botOption.name !== "") ? <GameButton
               color={botOption.color} img={botOption.img} func={() => { }}
-            />
+            /> : <Loading />
           }
         </Box>
       </Box>
