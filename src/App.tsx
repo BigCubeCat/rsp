@@ -10,14 +10,15 @@ import {
 
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Header from './components/Header';
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#5e533c',
+      main: '#179299',
     },
     secondary: {
-      main: '#f4b1c0',
+      main: '#40a02b',
     },
   },
 });
@@ -31,10 +32,11 @@ export default function App() {
         flexDirection: 'column',
         minHeight: '100vh'
       }}>
+        <Header title={"Камень, ножницы, бумага"} />
         <Box sx={{
           display: 'flex',
           justifyContent: 'center',
-          flexWrap: "wrap"
+          flexWrap: "wrap",
         }}>
           <Routes>
             <Route path="/" element={<Main />} />
