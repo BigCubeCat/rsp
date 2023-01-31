@@ -3,6 +3,7 @@ import {
   Table, Checkbox, Box, Typography, TableBody, Button,
   TableCell, TableContainer, TableHead, Paper, TableRow
 } from '@mui/material';
+import Saved from '../modals/Saved';
 
 import { allObjects, Rules } from '../Game/rules';
 import GameButton from '../Game/GameButton';
@@ -13,6 +14,7 @@ import { selectRules, setRules } from '../../features/user/userSlice';
 export default function RulesTable() {
   const dispatch = useAppDispatch();
   const currentRules = useAppSelector(selectRules);
+  const [savedIsOpen, setSavedIsOpen] = useState(false);
 
   // TODO: graph from rules
 
@@ -58,8 +60,8 @@ export default function RulesTable() {
         }
       }
     }
-    console.log(rules)
     dispatch(setRules(rules));
+    setSavedIsOpen(true);
   }
   return (
     <Box>
@@ -102,6 +104,7 @@ export default function RulesTable() {
           onClick={() => saveSettings()}
         >Сохранить</Button>
       </Box>
+      <Saved handleClose={() => setSavedIsOpen(false)} isOpen={savedIsOpen} />
     </Box>
   );
 }

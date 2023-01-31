@@ -16,21 +16,66 @@ export const spockRules: Rules = {
   "lizard": ["paper", "spock"],
 }
 
-export const customRules: Rules = {
-  "rock": ["scissors", "surfer", "donut", "unicorn", "fire"],
-  "scissors": ["surfer", "donut", "paper"],
-  "paper": ["rock"],
-  "donut": ["surfer"],
-  "surfer": ["scissors", "paper"],
-  "unicorn": ["surfer", "donut"],
-  "fire": ["surfer", "unicorn", "donut"],
-  "lizard": ["paper", "spock"],
-  "spock": ["rock", "scissors"],
-}
-
 // order important!
 export const allObjects: string[] = [
   "rock", "scissors", "paper", "lizard", "spock", "unicorn",
   "fire", "donut", "surfer"
 ]
+
+export const customRules: Rules = {
+  "rock": [
+    "scissors",
+    "lizard",
+    "fire",
+    "surfer"
+  ],
+  "scissors": [
+    "paper",
+    "lizard",
+    "unicorn",
+    "donut"
+  ],
+  "paper": [
+    "rock",
+    "spock",
+    "unicorn",
+    "surfer"
+  ],
+  "lizard": [
+    "paper",
+    "spock",
+    "unicorn",
+    "surfer"
+  ],
+  "spock": [
+    "rock",
+    "scissors",
+    "fire",
+    "surfer"
+  ],
+  "unicorn": [
+    "rock",
+    "spock",
+    "donut",
+    "surfer"
+  ],
+  "fire": [
+    "scissors",
+    "paper",
+    "lizard",
+    "unicorn"
+  ],
+  "donut": [
+    "rock",
+    "paper",
+    "lizard",
+    "spock",
+    "fire"
+  ],
+  "surfer": [
+    "scissors",
+    "fire",
+    "donut"
+  ]
+}
 
