@@ -8,25 +8,26 @@ import { allObjects, customRules, Rules } from '../Game/rules';
 import GameButton from '../Game/GameButton';
 import { elementKeys, elementIndexes } from '../Game/GameElements';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { setRules } from '../../features/user/userSlice';
-
-const graph: boolean[][] = allObjects.map((obj) => {
-  let row: boolean[] = [];
-  for (let i = 0; i < allObjects.length; ++i) {
-    row.push(false);
-  }
-  // Перебор всех побежденных
-  for (let bitten of customRules[obj]) {
-    row[elementIndexes[bitten]] = true;
-  }
-  return row;
-})
-
+import { selectRules, setRules } from '../../features/user/userSlice';
 
 export default function RulesTable() {
   const dispatch = useAppDispatch();
+  const currentRules = useAppSelector(selectRules);
 
   // TODO: graph from rules
+
+  const graph: boolean[][] = allObjects.map((obj) => {
+    let row: boolean[] = [];
+    for (let i = 0; i < allObjects.length; ++i) {
+      row.push(false);
+    }
+    // Перебор всех побежденных
+    for (let bitten of currentRules[obj]) {
+      row[elementIndexes[bitten]] = true;
+    }
+    return row;
+  })
+
   const [userTable, setUserTable] = useState(graph);
 
   let objectsIcons = allObjects.map(obj =>
