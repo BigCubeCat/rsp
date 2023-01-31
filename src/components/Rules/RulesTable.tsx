@@ -4,7 +4,7 @@ import {
   TableCell, TableContainer, TableHead, Paper, TableRow
 } from '@mui/material';
 
-import { allObjects, customRules, Rules } from '../Game/rules';
+import { allObjects, Rules } from '../Game/rules';
 import GameButton from '../Game/GameButton';
 import { elementKeys, elementIndexes } from '../Game/GameElements';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
@@ -85,8 +85,8 @@ export default function RulesTable() {
                   objectsIcons.map((_, i) => (index === i) ? <TableCell></TableCell>
                     : <TableCell>
                       <Checkbox
+                        color="default"
                         checked={userTable[index][i]}
-                        color="secondary"
                         onChange={() => handleChange(index, i)}
                       />
                     </TableCell>)

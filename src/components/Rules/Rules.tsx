@@ -33,7 +33,6 @@ export default function Rules({ mode }: { mode: string }) {
       }
       <Box sx={{ display: "flex", justifyContent: "space-around", marginTop: 5 }}>
         <Button component={Link} to="/">Назад</Button>
-        <Button component={Link} to={"/game/" + mode}>Сохранить</Button>
         <Button component={Link} to={"/game/" + mode}>Играть</Button>
       </Box>
     </Card>

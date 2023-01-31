@@ -6,6 +6,7 @@ import 'react-circular-progressbar/dist/styles.css';
 import styles from '../Card/Card.module.css';
 import { GetPercent, SetDefaultStorage } from './history'
 import { Link } from 'react-router-dom';
+import Clean from '../modals/Clean';
 
 interface CardProps {
   title?: string;
@@ -38,6 +39,7 @@ const Rate = (props: { title: string, percent: number }) => {
 export default function HistoryCard(props: CardProps) {
   //TODO: create card images (images in public/img)
   const [percent, setPercent] = useState(GetPercent());
+  const [popupOpen, setPopupOpen] = useState(false);
   return (
     <Card className={styles.Card} sx={{
       maxWidth: 345, width: 200,
@@ -50,7 +52,7 @@ export default function HistoryCard(props: CardProps) {
           Статистика
         </Typography>
         <Box sx={{ display: "flex", justifyContent: "center", marginBottom: 1 }}>
-          <Rate title={"Процент побед"} percent={percent} />
+          <Rate title={""} percent={percent} />
         </Box>
         <StyledInput />
         <Box sx={{
@@ -70,12 +72,13 @@ export default function HistoryCard(props: CardProps) {
             onClick={() => {
               SetDefaultStorage();
               setPercent(GetPercent());
+              setPopupOpen(true);
             }}
             variant="outlined"
           >Очистить</Button>
         </Box>
-
       </CardContent>
+      <Clean isOpen={popupOpen} handleClose={() => setPopupOpen(false)} />
     </Card>
   );
 }
