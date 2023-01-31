@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import GameButton from './GameButton';
 import { elements, IElement } from './GameElements';
 
+//TODO: Проверка количества элементов для выборки
 export default function Loading() {
   const [currentElement, setCurrentElement] = useState(elements[0]);
 

@@ -7,22 +7,22 @@ export default function Main() {
   return (
     <>
       <Card
-        title={"Classic"}
+        title={"Классика"}
         gameLink={"/game/classic"}
         rulesLink={"/about/classic"}
         img="/img/classic.jpg"
       />
       <Card
-        title={"..., Lizard, Spock"}
+        title={"Спок"}
         rulesLink={"/about/spock"}
         gameLink={"/game/spock"}
         img="/img/5.svg"
       />
       <Card
-        title={"Classic"}
+        title={"Ад"}
         rulesLink={"/about/custom"}
         gameLink={"/game/custom"}
-        img="/img/classic.jpg"
+        img="/img/custom.webp"
       />
       <HistoryCard />
     </>

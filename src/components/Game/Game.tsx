@@ -6,24 +6,20 @@ import GameButton from './GameButton';
 import Loading from './Loading';
 import { Result } from './Result';
 import { elements, IElement, elementKeys } from './GameElements';
-import { GetClassic, GetSpock } from '../../api/bot';
+import { GetClassic, GetSpock, GetCustom } from '../../api/bot';
 import { gameResult as playTheGame } from './game_logic';
-import { Rules, classicRules, spockRules } from './rules';
+import {
+  Rules, classicRules, spockRules, customRules, allObjects
+} from './rules';
 import { Link } from "react-router-dom";
 import { AddGame } from "../History/history";
 import { useAppSelector } from '../../app/hooks';
-import { selectUser, setUserName } from '../../features/user/userSlice';
+import { selectUser } from '../../features/user/userSlice';
 
 interface GameProps {
   mode: "classic" | "spock" | "custom";
   rules?: Rules;
 }
-
-const styles = {
-  paperContainer: {
-    backgroundImage: `/img/classic.jpg`
-  }
-};
 
 export default function Game({ mode, rules }: GameProps) {
   const user = useAppSelector(selectUser);
@@ -35,7 +31,7 @@ export default function Game({ mode, rules }: GameProps) {
   if (mode === "spock") {
     currentRules = spockRules;
   } else if (mode === "custom") {
-    currentRules = {};
+    currentRules = customRules;
   }
   const [gameRules, setGameRules] = useState<Rules>(currentRules);
   const [gameResult, setGameResult] = useState<number>(0);
@@ -59,12 +55,13 @@ export default function Game({ mode, rules }: GameProps) {
     }
     setUserOption(userElement);
     // TODO: Custom
-    const res: string = (mode === "classic") ? await GetClassic() : await GetSpock();
+    const res: string = (mode === "classic")
+      ? await GetClassic() : (mode === "spock")
+        ? await GetSpock() : await GetCustom(allObjects);
     setBotOption(elementKeys[res]);
     await delay(1100);
     const result = playTheGame(gameRules, userElement.name, res);
     setGameResult(result);
-    console.log(user)
     AddGame(
       user.name,
       (result === 1) ? "draw" : (result === 2) ? "win" : "loose"
@@ -72,7 +69,7 @@ export default function Game({ mode, rules }: GameProps) {
   }
 
   let gameButtons: JSX.Element[] = [];
-  let count = (mode === "classic") ? 3 : 5;
+  let count = (mode === "classic") ? 3 : (mode === "spock") ? 5 : elements.length;
   for (let i = 0; i < count; ++i) {
     gameButtons.push(
       <GameButton
@@ -83,6 +80,7 @@ export default function Game({ mode, rules }: GameProps) {
       />
     )
   }
+  console.log(botOption)
   return (
     <Card sx={{
       minHeight: 400,
@@ -122,7 +120,9 @@ export default function Game({ mode, rules }: GameProps) {
       <Box sx={{ display: "flex", justifyContent: "space-around", marginTop: 5 }}>
         {(botOption.name !== "") ?
           <Button variant="outlined" onClick={() => ReloadGame()}>Переиграть</Button>
-          : <Button variant="outlined" component={Link} to={"/about/" + mode}>Правила</Button>
+          : <Button variant="outlined" component={Link} to={"/about/" + mode}>
+            {mode === "custom" ? "Редактировать правила" : "Правила"}
+          </Button>
         }
         <Button variant="outlined" color="secondary" component={Link} to={"/"}>Выйти</Button>
       </Box>

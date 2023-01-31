@@ -16,3 +16,21 @@ export const spockRules: Rules = {
   "lizard": ["paper", "spock"],
 }
 
+export const customRules: Rules = {
+  "rock": ["scissors", "surfer", "donut", "unicorn", "fire"],
+  "scissors": ["surfer", "donut", "paper"],
+  "paper": ["rock"],
+  "donut": ["surfer"],
+  "surfer": ["scissors", "paper"],
+  "unicorn": ["surfer", "donut"],
+  "fire": ["surfer", "unicorn", "donut"],
+  "lizard": ["paper", "spock"],
+  "spock": ["rock", "scissors"],
+}
+
+// order important!
+export const allObjects: string[] = [
+  "rock", "scissors", "paper", "lizard", "spock", "unicorn",
+  "fire", "donut", "surfer"
+]
+

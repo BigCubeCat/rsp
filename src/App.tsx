@@ -47,7 +47,7 @@ export default function App() {
 
             <Route path="/game/classic" element={<Game mode={"classic"} />} />
             <Route path="/game/spock" element={<Game mode={"spock"} />} />
-            <Route path="/game/custom" element={<Game mode={"spock"} />} />
+            <Route path="/game/custom" element={<Game mode={"custom"} />} />
 
             <Route path="/statistic" element={<HistoryTable />} />
           </Routes>
