@@ -63,7 +63,7 @@ export default function HistoryCard(props: CardProps) {
           justifyContent: 'space-around',
         }}>
           <Button
-            variant="outlined"
+            variant="contained"
             color="secondary"
             component={Link}
             to="/statistic"
@@ -74,7 +74,7 @@ export default function HistoryCard(props: CardProps) {
               setPercent(GetPercent());
               setPopupOpen(true);
             }}
-            variant="outlined"
+            variant="contained"
           >Очистить</Button>
         </Box>
       </CardContent>

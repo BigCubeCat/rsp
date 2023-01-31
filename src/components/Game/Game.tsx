@@ -131,12 +131,12 @@ export default function Game({ mode }: GameProps) {
       </Box>
       <Box sx={{ display: "flex", justifyContent: "space-around", marginTop: 5 }}>
         {(botOption.name !== "") ?
-          <Button variant="outlined" onClick={() => ReloadGame()}>Переиграть</Button>
-          : <Button variant="outlined" component={Link} to={"/about/" + mode}>
+          <Button variant="contained" onClick={() => ReloadGame()}>Переиграть</Button>
+          : <Button variant="contained" component={Link} to={"/about/" + mode}>
             {mode === "custom" ? "Редактировать правила" : "Правила"}
           </Button>
         }
-        <Button variant="outlined" color="secondary" component={Link} to={"/"}>Выйти</Button>
+        <Button variant="contained" color="secondary" component={Link} to={"/"}>Выйти</Button>
       </Box>
     </Card>
   )

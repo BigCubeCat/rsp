@@ -36,13 +36,13 @@ export default function CustomCard(props: CardProps) {
           justifyContent: 'space-around',
         }}>
           <Button
-            variant="outlined"
+            variant="contained"
             color="secondary"
             component={Link}
             to={props.gameLink}
           >Играть</Button>
           <Button
-            variant="outlined"
+            variant="contained"
             component={Link}
             to={props.rulesLink}
           >Правила</Button>
