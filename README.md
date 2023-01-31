@@ -1,6 +1,14 @@
-# Getting Started with Create React App
+# Камень, Ножницы, Бумага .... Что?!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+![Что то странное](public/img/custom.webp)
+
+### Индивидуальное задание с зимнего [интенсива ШИФТ](https://github.com/debabin/shift-winter-2023-task)
+
+### TODO:
+- Сделать бота умнее на кастомных правилах (Например если пончик всемогущ - то бот выберит его)
+- Статистика только для текущего пользователя, а не для всех
+- Улучшить архитектуру (Например некоторые элементы Elements
+- ~~оптимизировать~~ ага, поверил... )
 
 ## Available Scripts
 

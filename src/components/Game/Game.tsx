@@ -113,7 +113,7 @@ export default function Game({ mode, rules }: GameProps) {
           {
             (botOption.name !== "") ? <GameButton
               color={botOption.color} img={botOption.img} func={() => { }}
-            /> : <Loading />
+            /> : <Loading mode={mode} />
           }
         </Box>
       </Box>

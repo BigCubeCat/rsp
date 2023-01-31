@@ -28,11 +28,13 @@ export default function Clean(props: { handleClose: Function, isOpen: boolean })
         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
           История очищена. Сыграйте еще раз, чтобы заполнить историю
         </Typography>
+        <Box sx={{display: "flex", justifyContent: 'flex-end', marginTop: 4}}>
         <Button
           onClick={() => props.handleClose()}
           color="secondary"
           variant="contained"
         >Закрыть</Button>
+        </Box>
       </Box>
     </Modal>
   );
