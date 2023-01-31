@@ -34,7 +34,7 @@ function getTime(date: Date) {
 export default function HistoryTable() {
   const rows = GetHistory();
   return (
-    <Card sx={{ padding: 5 }}>
+    <Card sx={{ padding: 5, maxHeight: window.innerHeight * 0.85 }}>
       <CardHeader title={
         <Typography variant='h5' component="div">
           Статистика:
@@ -44,7 +44,7 @@ export default function HistoryTable() {
       <Box sx={{
         maxWidth: 600, display: "flex", justifyContent: "space-between", flexWrap: "wrap"
       }}>
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} sx={{maxHeight: window.innerHeight * 0.7, overflowY: "scroll"}}>
           <Table sx={{ minWidth: 300 }}>
             <TableHead>
               <TableRow>
