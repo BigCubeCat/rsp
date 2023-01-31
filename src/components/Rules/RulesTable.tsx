@@ -8,7 +8,7 @@ import { allObjects, customRules, Rules } from '../Game/rules';
 import GameButton from '../Game/GameButton';
 import { elementKeys, elementIndexes } from '../Game/GameElements';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { selectRules, setRules } from '../../features/user/userSlice';
+import { setRules } from '../../features/user/userSlice';
 
 const graph: boolean[][] = allObjects.map((obj) => {
   let row: boolean[] = [];
@@ -25,7 +25,6 @@ const graph: boolean[][] = allObjects.map((obj) => {
 
 export default function RulesTable() {
   const dispatch = useAppDispatch();
-  const rules = useAppSelector(selectRules);
 
   // TODO: graph from rules
   const [userTable, setUserTable] = useState(graph);
@@ -58,6 +57,7 @@ export default function RulesTable() {
         }
       }
     }
+    console.log(rules)
     dispatch(setRules(rules));
   }
   return (

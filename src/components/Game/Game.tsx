@@ -14,7 +14,7 @@ import {
 import { Link } from "react-router-dom";
 import { AddGame } from "../History/history";
 import { useAppSelector } from '../../app/hooks';
-import { selectUser } from '../../features/user/userSlice';
+import { selectRules, selectUser } from '../../features/user/userSlice';
 
 interface GameProps {
   mode: "classic" | "spock" | "custom";
@@ -27,13 +27,12 @@ export default function Game({ mode, rules }: GameProps) {
   // 1 - draw
   // 2 - user win
   // 3 - bot win
-  let currentRules = classicRules;
+  let currentRules = useAppSelector(selectRules);
   if (mode === "spock") {
     currentRules = spockRules;
-  } else if (mode === "custom") {
-    currentRules = customRules;
+  } else if (mode === "classic") {
+    currentRules = classicRules;
   }
-  const [gameRules, setGameRules] = useState<Rules>(currentRules);
   const [gameResult, setGameResult] = useState<number>(0);
   const [userOption, setUserOption] = useState<IElement>(
     { name: "", color: "", img: "" }
@@ -60,7 +59,8 @@ export default function Game({ mode, rules }: GameProps) {
         ? await GetSpock() : await GetCustom(allObjects);
     setBotOption(elementKeys[res]);
     await delay(1100);
-    const result = playTheGame(gameRules, userElement.name, res);
+    console.log(currentRules)
+    const result = playTheGame(currentRules, userElement.name, res);
     setGameResult(result);
     AddGame(
       user.name,
