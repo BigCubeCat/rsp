@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Box } from '@mui/material';
 import HistoryCard from './History/HistoryCard';
 import Card from './Card/Card';
 
@@ -19,7 +18,7 @@ export default function Main() {
         img="/img/5.svg"
       />
       <Card
-        title={"Ад"}
+        title={"Что?!"}
         rulesLink={"/about/custom"}
         gameLink={"/game/custom"}
         img="/img/custom.webp"

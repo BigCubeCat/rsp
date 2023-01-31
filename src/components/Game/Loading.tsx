@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import GameButton from './GameButton';
-import { elements, IElement } from './GameElements';
+import { elements } from './GameElements';
 
 export default function Loading({ mode }: { mode: "classic" | "spock" | "custom" }) {
   const [currentElement, setCurrentElement] = useState(elements[0]);
