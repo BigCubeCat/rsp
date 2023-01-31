@@ -18,10 +18,23 @@ import { selectRules, selectUser } from '../../features/user/userSlice';
 
 interface GameProps {
   mode: "classic" | "spock" | "custom";
-  rules?: Rules;
 }
 
-export default function Game({ mode, rules }: GameProps) {
+/*
+ * formatOptions()
+ * generate array for best bot game
+ */
+function formatOptions(rules: Rules): string[] {
+  let array: string[] = [];
+  for (let obj of allObjects) {
+    for (let i = 0; i < rules[obj].length; ++i) {
+      array.push(obj);
+    }
+  }
+  return array;
+}
+
+export default function Game({ mode }: GameProps) {
   const user = useAppSelector(selectUser);
   // 0 - no result
   // 1 - draw
@@ -53,10 +66,9 @@ export default function Game({ mode, rules }: GameProps) {
       return;
     }
     setUserOption(userElement);
-    // TODO: Custom
     const res: string = (mode === "classic")
       ? await GetClassic() : (mode === "spock")
-        ? await GetSpock() : await GetCustom(allObjects);
+        ? await GetSpock() : await GetCustom(formatOptions(currentRules));
     setBotOption(elementKeys[res]);
     await delay(1100);
     console.log(currentRules)
