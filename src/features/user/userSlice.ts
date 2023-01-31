@@ -1,14 +1,17 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
 import { fetchUser } from './userAPI';
+import { Rules, customRules } from '../../components/Game/rules';
 
 export interface UserState {
   name: string;
+  rules: Rules;
   status: 'idle' | 'loading' | 'failed';
 }
 
 const initialState: UserState = {
   name: "guest",
+  rules: customRules,
   status: 'idle',
 };
 
@@ -37,14 +40,19 @@ export const userSlice = createSlice({
     logout: (state) => {
       state.name = "guest";
     },
+    setRules: (state, action: PayloadAction<Rules>) => {
+      state.rules = action.payload;
+    }
   },
 });
 
-export const { setName, logout } = userSlice.actions;
+export const { setName, logout, setRules } = userSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
+// TODO: create selectUsername, selectRules
 export const selectUser = (state: RootState) => state.user;
+export const selectRules = (state: RootState) => state.user.rules;
 export default userSlice.reducer;
 

@@ -4,9 +4,11 @@ import {
   TableCell, TableContainer, TableHead, Paper, TableRow
 } from '@mui/material';
 
-import { allObjects, customRules } from '../Game/rules';
+import { allObjects, customRules, Rules } from '../Game/rules';
 import GameButton from '../Game/GameButton';
 import { elementKeys, elementIndexes } from '../Game/GameElements';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { selectRules, setRules } from '../../features/user/userSlice';
 
 const graph: boolean[][] = allObjects.map((obj) => {
   let row: boolean[] = [];
@@ -22,6 +24,10 @@ const graph: boolean[][] = allObjects.map((obj) => {
 
 
 export default function RulesTable() {
+  const dispatch = useAppDispatch();
+  const rules = useAppSelector(selectRules);
+
+  // TODO: graph from rules
   const [userTable, setUserTable] = useState(graph);
 
   let objectsIcons = allObjects.map(obj =>
@@ -38,9 +44,21 @@ export default function RulesTable() {
   const handleChange = (row: number, column: number) => {
     let newUserTable = userTable.map(arr => arr.slice())
     newUserTable[row][column] = !userTable[row][column];
-    console.log(row, column)
-    console.log(newUserTable[row][column], userTable[row][column])
+    newUserTable[column][row] = userTable[row][column];
     setUserTable(newUserTable);
+  }
+
+  const saveSettings = () => {
+    let rules: Rules = {};
+    for (let i = 0; i < allObjects.length; ++i) {
+      rules[allObjects[i]] = [];
+      for (let j = 0; j < allObjects.length; ++j) {
+        if (userTable[i][j]) {
+          rules[allObjects[i]].push(allObjects[j]);
+        }
+      }
+    }
+    dispatch(setRules(rules));
   }
   return (
     <Box>
@@ -78,7 +96,10 @@ export default function RulesTable() {
         </Table>
       </TableContainer>
       <Box sx={{ display: "flex", justifyContent: 'flex-end', }}>
-        <Button sx={{ marginTop: 3 }}>Сохранить</Button>
+        <Button
+          sx={{ marginTop: 3 }}
+          onClick={() => saveSettings()}
+        >Сохранить</Button>
       </Box>
     </Box>
   );
