@@ -1,18 +1,15 @@
 import { Rules } from './rules';
+import { resultType } from '../History/history';
 
-// TODO: Change to "draw" | "win" | "loose"
-type result = 1 | 2 | 3;
 
-export function gameResult(rules: Rules, first: string, second: string): result {
-  console.log(first, second)
+export function gameResult(rules: Rules, first: string, second: string): resultType {
   if (first === second) {
-    return 1;
+    return "draw";
   }
-  console.log(rules)
   for (let value of rules[first]) {
     if (value == second) {
-      return 2;
+      return "win";
     }
   }
-  return 3;
+  return "loose";
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Box, Card, CardHeader, Typography, Alert, Button
+  Box, Card, CardHeader, Typography, Button
 } from '@mui/material';
 import GameButton from './GameButton';
 import Loading from './Loading';
@@ -9,10 +9,10 @@ import { elements, IElement, elementKeys } from './GameElements';
 import { GetClassic, GetSpock, GetCustom } from '../../api/bot';
 import { gameResult as playTheGame } from './game_logic';
 import {
-  Rules, classicRules, spockRules, customRules, allObjects
+  Rules, classicRules, spockRules, allObjects
 } from './rules';
 import { Link } from "react-router-dom";
-import { AddGame } from "../History/history";
+import { AddGame, resultType } from "../History/history";
 import { useAppSelector } from '../../app/hooks';
 import { selectRules, selectUser } from '../../features/user/userSlice';
 
@@ -36,17 +36,13 @@ function formatOptions(rules: Rules): string[] {
 
 export default function Game({ mode }: GameProps) {
   const userName = useAppSelector(selectUser);
-  // 0 - no result
-  // 1 - draw
-  // 2 - user win
-  // 3 - bot win
   let currentRules = useAppSelector(selectRules);
   if (mode === "spock") {
     currentRules = spockRules;
   } else if (mode === "classic") {
     currentRules = classicRules;
   }
-  const [gameResult, setGameResult] = useState<number>(0);
+  const [gameResult, setGameResult] = useState<resultType>("no");
   const [userOption, setUserOption] = useState<IElement>(
     { name: "", color: "", img: "" }
   );
@@ -56,7 +52,7 @@ export default function Game({ mode }: GameProps) {
   const ReloadGame = () => {
     setBotOption({ name: "", color: "", img: "" });
     setUserOption({ name: "", color: "", img: "" });
-    setGameResult(0);
+    setGameResult("no");
   }
 
   const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
@@ -71,13 +67,9 @@ export default function Game({ mode }: GameProps) {
         ? await GetSpock() : await GetCustom(formatOptions(currentRules));
     setBotOption(elementKeys[res]);
     await delay(1100);
-    console.log(currentRules)
     const result = playTheGame(currentRules, userElement.name, res);
     setGameResult(result);
-    AddGame(
-      userName,
-      (result === 1) ? "draw" : (result === 2) ? "win" : "loose"
-    );
+    AddGame(userName, result);
   }
 
   let gameButtons: JSX.Element[] = [];
@@ -92,7 +84,6 @@ export default function Game({ mode }: GameProps) {
       />
     )
   }
-  console.log(botOption)
   return (
     <Card sx={{
       minHeight: 400,
@@ -103,7 +94,7 @@ export default function Game({ mode }: GameProps) {
           {mode === "classic" ? "Камень, Ножницы, Бумага" : "Камень, Ножницы, Бумага и другие"}
         </Typography>}>
       </CardHeader >
-      {(gameResult === 0) ?
+      {(gameResult === "no") ?
         <>
           <Typography variant="h6" textAlign={"center"}> Ваш выбор:</Typography>
           <Box sx={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}>

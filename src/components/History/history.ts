@@ -1,7 +1,9 @@
+export type resultType = "no" | "draw" | "win" | "loose";
+
 export type GameResultRow = {
   name: string;
   date: Date;
-  result: "win" | "loose" | "draw";
+  result: resultType;
 }
 
 type Storage = {
@@ -39,7 +41,7 @@ export function GetPercent(): number {
 }
 
 
-export function AddGame(name: string, result: "win" | "loose" | "draw") {
+export function AddGame(name: string, result: resultType) {
   let history = GetHistory();
   history.push({ result: result, date: new Date(), name: name });
   let countWin = 0;
@@ -48,7 +50,6 @@ export function AddGame(name: string, result: "win" | "loose" | "draw") {
       countWin++;
     }
   }
-  console.log(countWin, history.length)
   localStorage.setItem("winRate", "" + Math.floor(countWin / history.length * 100));
   localStorage.setItem("history", JSON.stringify(history));
 }
