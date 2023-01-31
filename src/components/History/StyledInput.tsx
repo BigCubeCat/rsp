@@ -38,9 +38,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Input() {
-  const user = useAppSelector(selectUser);
+  const userName = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
-  const [value, setValue] = useState<string>(user.name === "guest" ? "" : user.name);
+  const [value, setValue] = useState<string>(userName === "guest" ? "" : userName);
   return (
     <StyledInput>
       <StyledInputBase

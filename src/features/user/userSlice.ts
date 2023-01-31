@@ -51,8 +51,7 @@ export const { setName, logout, setRules } = userSlice.actions;
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
-// TODO: create selectUsername, selectRules
-export const selectUser = (state: RootState) => state.user;
+export const selectUser = (state: RootState) => state.user.name;
 export const selectRules = (state: RootState) => state.user.rules;
 export default userSlice.reducer;
 

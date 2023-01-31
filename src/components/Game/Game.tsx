@@ -35,7 +35,7 @@ function formatOptions(rules: Rules): string[] {
 }
 
 export default function Game({ mode }: GameProps) {
-  const user = useAppSelector(selectUser);
+  const userName = useAppSelector(selectUser);
   // 0 - no result
   // 1 - draw
   // 2 - user win
@@ -75,7 +75,7 @@ export default function Game({ mode }: GameProps) {
     const result = playTheGame(currentRules, userElement.name, res);
     setGameResult(result);
     AddGame(
-      user.name,
+      userName,
       (result === 1) ? "draw" : (result === 2) ? "win" : "loose"
     );
   }

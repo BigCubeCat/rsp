@@ -16,7 +16,6 @@ interface CardProps {
 }
 
 export default function CustomCard(props: CardProps) {
-  //TODO: create card images (images in public/img)
   return (
     <Card className={styles.Card} sx={{
       maxWidth: 345,
