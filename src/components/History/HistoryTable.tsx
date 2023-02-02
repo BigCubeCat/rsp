@@ -10,6 +10,9 @@ import {
 import { getHistory } from '../../utils/history';
 import { getTime, getDate } from '../../utils/datetime';
 
+const STATUS_TRANSLATE: {[key: string]: string} = {
+  "win": "Победа", "draw": "Ничья", "loose": "Поражение"
+}
 
 export default function HistoryTable() {
   const rows = getHistory();
@@ -50,7 +53,7 @@ export default function HistoryTable() {
                     {getTime(new Date(row.date))}
                   </TableCell>
                   <TableCell align="right">
-                    {(row.result === "win") ? "Победа" : (row.result === "draw") ? "Ничья" : "Поражение"}
+                    {STATUS_TRANSLATE[row.result]}
                   </TableCell>
                 </TableRow>
               ))}
