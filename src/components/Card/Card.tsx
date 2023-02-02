@@ -5,8 +5,6 @@ import Typography from '@mui/material/Typography';
 import { Button, Box } from '@mui/material';
 import { Link } from "react-router-dom";
 
-import styles from './Card.module.css';
-
 interface CardProps {
   title: string;
   img: string;
@@ -16,9 +14,15 @@ interface CardProps {
 
 export default function CustomCard(props: CardProps) {
   return (
-    <Card className={styles.Card} sx={{
+    <Card sx={{
       maxWidth: 345,
-      minHeight: 300, margin: 5
+      minHeight: 300, margin: 5,
+      transition: "2s",
+      '&:hover': {
+        position: "relative",
+        top: "-15px",
+      }
+
     }}>
       <CardContent sx={{
         minHeight: "100%",

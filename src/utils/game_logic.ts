@@ -1,5 +1,5 @@
 import { TRules } from './rules';
-import { resultType } from '../../utils/history';
+import { resultType } from './history';
 
 
 export function gameResult(
