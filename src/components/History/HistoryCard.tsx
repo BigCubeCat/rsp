@@ -10,13 +10,6 @@ import Clean from '../modals/Clean';
 
 import { getPercent, setDefaultStorage } from '../../utils/history'
 
-interface CardProps {
-  title?: string;
-  img?: string;
-  rulesLink?: string;
-  gameLink?: string;
-}
-
 const Rate = (props: { title: string, percent: number }) => {
   return <Box sx={{
     display: "flex",
@@ -38,7 +31,7 @@ const Rate = (props: { title: string, percent: number }) => {
   </Box>
 }
 
-export default function HistoryCard(props: CardProps) {
+export default function HistoryCard() {
   const [percent, setPercent] = useState(getPercent());
   const [popupOpen, setPopupOpen] = useState(false);
   return (
