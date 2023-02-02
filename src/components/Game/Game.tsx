@@ -66,9 +66,20 @@ export default function Game({ mode }: GameProps) {
       return;
     }
     setUserOption(userElement);
-    const res: string = (mode === "classic")
-      ? await GetClassic() : (mode === "spock")
-        ? await GetSpock() : await GetCustom(formatOptions(currentRules));
+    let res: string = "";
+    switch (mode) {
+      case "classic":
+        res = await GetClassic();
+        break;
+      case "spock":
+        res = await GetSpock();
+        break;
+      case "custom":
+        res = await GetCustom(formatOptions(currentRules));
+        break;
+      default:
+        break;
+    }
     setBotOption(ELEMENTS_KEYS[res]);
     await delay(1100);
     const result = playTheGame(currentRules, userElement.name, res);
