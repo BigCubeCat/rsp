@@ -8,7 +8,7 @@ import { selectRules, selectUser } from '../../features/user/userSlice';
 import { useAppSelector } from '../../app/hooks';
 import { GetClassic, GetSpock, GetCustom } from '../../api/bot';
 
-import GameButton from './GameButton';
+import GameButton from '../GameButton/GameButton';
 import Loading from './Loading';
 import { Result } from './Result';
 

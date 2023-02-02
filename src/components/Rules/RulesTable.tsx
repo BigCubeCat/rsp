@@ -5,7 +5,7 @@ import {
 } from '@mui/material';
 
 import Saved from '../modals/Saved';
-import GameButton from '../Game/GameButton';
+import GameButton from '../GameButton/GameButton';
 import { ALL_OBJECTS, TRules } from '../../utils/rules';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';

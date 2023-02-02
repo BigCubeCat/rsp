@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import GameButton from './GameButton';
+import GameButton from '../GameButton/GameButton';
 import { ELEMENTS } from './game_elements';
 import { CLASSIC_SIZE, SPOCK_SIZE } from '../../utils/const';
 
