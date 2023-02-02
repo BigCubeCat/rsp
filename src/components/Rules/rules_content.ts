@@ -1,9 +1,9 @@
-type ruleTextObject = {
+export type TRuleTextObject = {
   title: string;
   img: string;
   body: string;
 }
-export const RulesText: { [key: string]: ruleTextObject } = {
+export const RULES_TEXT: { [key: string]: TRuleTextObject } = {
   "classic": {
     title: "Классический режим",
     img: "/img/classic.jpg",

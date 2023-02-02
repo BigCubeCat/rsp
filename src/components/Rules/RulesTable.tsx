@@ -3,20 +3,20 @@ import {
   Table, Checkbox, Box, Typography, TableBody, Button,
   TableCell, TableContainer, TableHead, Paper, TableRow
 } from '@mui/material';
-import Saved from '../modals/Saved';
 
-import { allObjects, Rules } from '../Game/rules';
+import Saved from '../modals/Saved';
 import GameButton from '../Game/GameButton';
-import { elementKeys, elementIndexes } from '../Game/GameElements';
+import { allObjects, Rules } from '../Game/rules';
+
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
+
+import { elementKeys, elementIndexes } from '../Game/GameElements';
 import { selectRules, setRules } from '../../features/user/userSlice';
 
 export default function RulesTable() {
   const dispatch = useAppDispatch();
   const currentRules = useAppSelector(selectRules);
   const [savedIsOpen, setSavedIsOpen] = useState(false);
-
-  // TODO: graph from rules
 
   const graph: boolean[][] = allObjects.map((obj) => {
     let row: boolean[] = [];
