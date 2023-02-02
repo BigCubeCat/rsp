@@ -12,7 +12,7 @@ import GameButton from './GameButton';
 import Loading from './Loading';
 import { Result } from './Result';
 
-import { elements, IElement, elementKeys } from './GameElements';
+import { ELEMENTS, ELEMENTS_KEYS, IElement } from './game_elements';
 import { gameResult as playTheGame } from '../../utils/game_logic';
 import {
   TRules, CLASSIC_RULES, SPOCK_RULES, ALL_OBJECTS
@@ -69,7 +69,7 @@ export default function Game({ mode }: GameProps) {
     const res: string = (mode === "classic")
       ? await GetClassic() : (mode === "spock")
         ? await GetSpock() : await GetCustom(formatOptions(currentRules));
-    setBotOption(elementKeys[res]);
+    setBotOption(ELEMENTS_KEYS[res]);
     await delay(1100);
     const result = playTheGame(currentRules, userElement.name, res);
     setGameResult(result);
@@ -79,14 +79,14 @@ export default function Game({ mode }: GameProps) {
   let gameButtons: JSX.Element[] = [];
   let count = (mode === "classic") ?
     CLASSIC_SIZE : (mode === "spock") ?
-      SPOCK_SIZE : elements.length;
+      SPOCK_SIZE : ELEMENTS.length;
   for (let i = 0; i < count; ++i) {
     gameButtons.push(
       <GameButton
         key={"GameButton" + i}
-        img={elements[i].img}
-        color={elements[i].color}
-        func={() => { submitResult(elements[i]) }}
+        img={ELEMENTS[i].img}
+        color={ELEMENTS[i].color}
+        func={() => { submitResult(ELEMENTS[i]) }}
       />
     )
   }
@@ -106,7 +106,8 @@ export default function Game({ mode }: GameProps) {
           <Box sx={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}>
             {gameButtons}
           </Box>
-        </> : <Result result={gameResult} />
+        </>
+        : <Result result={gameResult} />
       }
       <Box sx={{ display: "flex", justifyContent: "space-between", marginTop: 5 }}>
         <Box>

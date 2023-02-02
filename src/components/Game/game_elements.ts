@@ -4,7 +4,7 @@ export interface IElement {
   color: string;
 }
 
-export const elements: IElement[] = [
+export const ELEMENTS: IElement[] = [
   {
     name: "rock", img: "/img/rock.png", color: "#fbd165"
   },
@@ -34,19 +34,19 @@ export const elements: IElement[] = [
   }
 ]
 
-export const elementKeys: { [key: string]: IElement } = {
-  "rock": elements[0],
-  "scissors": elements[1],
-  "paper": elements[2],
-  "lizard": elements[3],
-  "spock": elements[4],
-  "unicorn": elements[5],
-  "fire": elements[6],
-  "donut": elements[7],
-  "surfer": elements[8],
+export const ELEMENTS_KEYS: { [key: string]: IElement } = {
+  "rock": ELEMENTS[0],
+  "scissors": ELEMENTS[1],
+  "paper": ELEMENTS[2],
+  "lizard": ELEMENTS[3],
+  "spock": ELEMENTS[4],
+  "unicorn": ELEMENTS[5],
+  "fire": ELEMENTS[6],
+  "donut": ELEMENTS[7],
+  "surfer": ELEMENTS[8],
 }
 
-export const elementIndexes: { [key: string]: number } = {
+export const ELEMENTS_INDEXES: { [key: string]: number } = {
   "rock": 0,
   "scissors": 1,
   "paper": 2,

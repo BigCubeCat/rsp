@@ -10,7 +10,7 @@ import { ALL_OBJECTS, TRules } from '../../utils/rules';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
-import { elementKeys, elementIndexes } from '../Game/GameElements';
+import { ELEMENTS_KEYS, ELEMENTS_INDEXES } from '../Game/game_elements';
 import { selectRules, setRules } from '../../features/user/userSlice';
 
 export default function RulesTable() {
@@ -25,7 +25,7 @@ export default function RulesTable() {
     }
     // Перебор всех побежденных
     for (let bitten of currentRules[obj]) {
-      row[elementIndexes[bitten]] = true;
+      row[ELEMENTS_INDEXES[bitten]] = true;
     }
     return row;
   })
@@ -35,8 +35,8 @@ export default function RulesTable() {
   let objectsIcons = ALL_OBJECTS.map(obj =>
     <TableCell align="center">
       <GameButton
-        img={elementKeys[obj].img}
-        color={elementKeys[obj].color}
+        img={ELEMENTS_KEYS[obj].img}
+        color={ELEMENTS_KEYS[obj].color}
         func={() => { }}
         size={32}
       />
