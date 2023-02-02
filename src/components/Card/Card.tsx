@@ -5,7 +5,6 @@ import Typography from '@mui/material/Typography';
 import { Button, Box } from '@mui/material';
 import { Link } from "react-router-dom";
 
-
 import styles from './Card.module.css';
 
 interface CardProps {
