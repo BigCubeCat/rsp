@@ -16,33 +16,33 @@ const defaultStorage: Storage = {
   history: [],
 }
 
-export function SetDefaultStorage() {
+export function setDefaultStorage() {
   localStorage.clear();
   localStorage.setItem("winRate", "" + defaultStorage.winRate);
   localStorage.setItem("history", JSON.stringify(defaultStorage.history));
 }
 
-export function GetHistory(): GameResultRow[] {
+export function getHistory(): GameResultRow[] {
   const res = JSON.parse(localStorage.history);
   if (res === undefined) {
-    SetDefaultStorage();
+    setDefaultStorage();
     return [];
   }
   return res;
 }
 
-export function GetPercent(): number {
+export function getPercent(): number {
   const res = localStorage.winRate;
   if (res === undefined) {
-    SetDefaultStorage();
+    setDefaultStorage();
     return 0;
   }
   return res;
 }
 
 
-export function AddGame(name: string, result: resultType) {
-  let history = GetHistory();
+export function addGame(name: string, result: resultType) {
+  let history = getHistory();
   history.push({ result: result, date: new Date(), name: name });
   let countWin = 0;
   for (let r of history) {

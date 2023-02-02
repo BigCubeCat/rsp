@@ -12,7 +12,7 @@ import {
   Rules, classicRules, spockRules, allObjects
 } from './rules';
 import { Link } from "react-router-dom";
-import { AddGame, resultType } from "../History/history";
+import { addGame, resultType } from "../../utils/history";
 import { useAppSelector } from '../../app/hooks';
 import { selectRules, selectUser } from '../../features/user/userSlice';
 
@@ -69,7 +69,7 @@ export default function Game({ mode }: GameProps) {
     await delay(1100);
     const result = playTheGame(currentRules, userElement.name, res);
     setGameResult(result);
-    AddGame(userName, result);
+    addGame(userName, result);
   }
 
   let gameButtons: JSX.Element[] = [];

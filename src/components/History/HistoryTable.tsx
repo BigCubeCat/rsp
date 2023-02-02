@@ -1,38 +1,18 @@
 import React from 'react';
-import {
-  Card, CardHeader, Typography, Box, Button
-} from '@mui/material';
 import { Link } from 'react-router-dom';
 
 import {
   Table, TableBody, TableCell,
-  TableContainer, TableHead, TableRow, Paper
+  TableContainer, TableHead, TableRow, Paper,
+  Card, CardHeader, Typography, Box, Button
 } from '@mui/material';
-import { GameResultRow, GetHistory } from './history';
 
-/*
- * normilizeDate()
- * convert numbers < 10 like 7 to 07
- */
-function normilizeDate(value: number): string {
-  if (value < 10) {
-    return "0" + value;
-  }
-  return "" + value;
-}
+import { getHistory } from '../../utils/history';
+import { getTime, getDate } from '../../utils/datetime';
 
-function getDate(date: Date) {
-  return normilizeDate(date.getDay()) + "."
-    + normilizeDate(date.getMonth() + 1) + "."
-    + date.getFullYear();
-}
-
-function getTime(date: Date) {
-  return normilizeDate(date.getHours()) + "." + normilizeDate(date.getMinutes());
-}
 
 export default function HistoryTable() {
-  const rows = GetHistory();
+  const rows = getHistory();
   return (
     <Card sx={{ padding: 5, maxHeight: window.innerHeight * 0.85 }}>
       <CardHeader title={
@@ -44,7 +24,7 @@ export default function HistoryTable() {
       <Box sx={{
         maxWidth: 600, display: "flex", justifyContent: "space-between", flexWrap: "wrap"
       }}>
-        <TableContainer component={Paper} sx={{maxHeight: window.innerHeight * 0.7, overflowY: "scroll"}}>
+        <TableContainer component={Paper} sx={{ maxHeight: window.innerHeight * 0.7, overflowY: "scroll" }}>
           <Table sx={{ minWidth: 300 }}>
             <TableHead>
               <TableRow>

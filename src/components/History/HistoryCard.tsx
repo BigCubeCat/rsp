@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { Box, Button, Card, CardContent, Typography } from '@mui/material';
-import StyledInput from './StyledInput';
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import styles from '../Card/Card.module.css';
-import { GetPercent, SetDefaultStorage } from './history'
+
 import { Link } from 'react-router-dom';
+
+import StyledInput from './StyledInput';
+import styles from '../Card/Card.module.css';
 import Clean from '../modals/Clean';
+
+import { getPercent, setDefaultStorage } from '../../utils/history'
 
 interface CardProps {
   title?: string;
@@ -38,7 +41,7 @@ const Rate = (props: { title: string, percent: number }) => {
 
 export default function HistoryCard(props: CardProps) {
   //TODO: create card images (images in public/img)
-  const [percent, setPercent] = useState(GetPercent());
+  const [percent, setPercent] = useState(getPercent());
   const [popupOpen, setPopupOpen] = useState(false);
   return (
     <Card className={styles.Card} sx={{
@@ -70,8 +73,8 @@ export default function HistoryCard(props: CardProps) {
           >Подробнее</Button>
           <Button
             onClick={() => {
-              SetDefaultStorage();
-              setPercent(GetPercent());
+              setDefaultStorage();
+              setPercent(getPercent());
               setPopupOpen(true);
             }}
             variant="contained"
