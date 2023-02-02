@@ -141,7 +141,7 @@ export default function Game({ mode }: GameProps) {
       <Box sx={{ display: "flex", justifyContent: "space-around", marginTop: 5 }}>
         {(botOption.name !== "") ?
           <Button
-            sx={{ borderRadius: 100, color: "#44475a", fontWeight: "bold" }}
+            sx={{ borderRadius: 100, fontWeight: "bold" }}
             variant="contained" onClick={() => ReloadGame()}>Переиграть</Button>
           : <Button
             sx={{ borderRadius: 100, color: "#44475a", fontWeight: "bold" }}
@@ -150,7 +150,7 @@ export default function Game({ mode }: GameProps) {
           </Button>
         }
         <Button
-          sx={{ borderRadius: 100, color: "#44475a", fontWeight: "bold" }}
+          sx={{ borderRadius: 100, fontWeight: "bold" }}
           variant="contained" color="secondary" component={Link} to={"/"}>Выйти</Button>
       </Box>
     </Card>

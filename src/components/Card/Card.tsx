@@ -42,13 +42,13 @@ export default function CustomCard(props: CardProps) {
             color="secondary"
             component={Link}
             to={props.gameLink}
-            sx={{ borderRadius: 100, color: "#44475a", fontWeight: "bold" }}
+            sx={{ borderRadius: 100, fontWeight: "bold" }}
           >Играть</Button>
           <Button
             variant="contained"
             component={Link}
             to={props.rulesLink}
-            sx={{ borderRadius: 100, color: "#44475a", fontWeight: "bold" }}
+            sx={{ borderRadius: 100, fontWeight: "bold" }}
           >Правила</Button>
         </Box>
       </CardContent>

@@ -62,14 +62,14 @@ export default function HistoryCard() {
           justifyContent: 'space-around',
         }}>
           <Button
-            sx={{ borderRadius: 100, color: "#44475a", fontWeight: "bold" }}
+            sx={{ borderRadius: 100, fontWeight: "bold" }}
             variant="contained"
             color="secondary"
             component={Link}
             to="/statistic"
           >Подробнее</Button>
           <Button
-            sx={{ borderRadius: 100, color: "#44475a", fontWeight: "bold" }}
+            sx={{ borderRadius: 100, fontWeight: "bold" }}
             onClick={() => {
               setDefaultStorage();
               setPercent(getPercent());
