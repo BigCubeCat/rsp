@@ -15,10 +15,10 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#179299',
+      main: '#bd93f9',
     },
     secondary: {
-      main: '#40a02b',
+      main: '#50fa7b',
     },
   },
 });
@@ -31,7 +31,6 @@ export default function App() {
         justifyContent: 'center',
         flexDirection: 'column',
         minHeight: '100vh',
-        backgroundImage: "/img/bg1.jpg",
       }}>
         <Box sx={{
           display: 'flex',
