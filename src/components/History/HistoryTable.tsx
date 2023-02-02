@@ -41,7 +41,7 @@ export default function HistoryTable() {
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
-                    {row.name}
+                    {(row.name === "guest") ? "Гость" : row.name}
                   </TableCell>
                   <TableCell align="right">
                     {getDate(new Date(row.date))}
@@ -50,7 +50,7 @@ export default function HistoryTable() {
                     {getTime(new Date(row.date))}
                   </TableCell>
                   <TableCell align="right">
-                    {row.result}
+                    {(row.result === "win") ? "Победа" : (row.result === "draw") ? "Ничья" : "Поражение"}
                   </TableCell>
                 </TableRow>
               ))}
