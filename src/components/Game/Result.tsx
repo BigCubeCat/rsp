@@ -1,6 +1,7 @@
-import { Alert } from '@mui/material';
 import React from 'react';
-import { resultType } from '../History/history';
+import { Alert } from '@mui/material';
+
+import { resultType } from '../../utils/history';
 
 
 export const Result = ({ result }: { result: resultType }): JSX.Element => {

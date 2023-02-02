@@ -2,19 +2,23 @@ import React, { useState } from 'react';
 import {
   Box, Card, CardHeader, Typography, Button
 } from '@mui/material';
+import { Link } from "react-router-dom";
+import { selectRules, selectUser } from '../../features/user/userSlice';
+
+import { useAppSelector } from '../../app/hooks';
+import { GetClassic, GetSpock, GetCustom } from '../../api/bot';
+
 import GameButton from './GameButton';
 import Loading from './Loading';
 import { Result } from './Result';
+
 import { elements, IElement, elementKeys } from './GameElements';
-import { GetClassic, GetSpock, GetCustom } from '../../api/bot';
-import { gameResult as playTheGame } from './game_logic';
+import { gameResult as playTheGame } from '../../utils/game_logic';
 import {
-  Rules, classicRules, spockRules, allObjects
-} from './rules';
-import { Link } from "react-router-dom";
+  TRules, CLASSIC_RULES, SPOCK_RULES, ALL_OBJECTS
+} from '../../utils/rules';
 import { addGame, resultType } from "../../utils/history";
-import { useAppSelector } from '../../app/hooks';
-import { selectRules, selectUser } from '../../features/user/userSlice';
+import { CLASSIC_SIZE, SPOCK_SIZE } from '../../utils/const';
 
 interface GameProps {
   mode: "classic" | "spock" | "custom";
@@ -24,9 +28,9 @@ interface GameProps {
  * formatOptions()
  * generate array for best bot game
  */
-function formatOptions(rules: Rules): string[] {
+function formatOptions(rules: TRules): string[] {
   let array: string[] = [];
-  for (let obj of allObjects) {
+  for (let obj of ALL_OBJECTS) {
     for (let i = 0; i < rules[obj].length; ++i) {
       array.push(obj);
     }
@@ -38,9 +42,9 @@ export default function Game({ mode }: GameProps) {
   const userName = useAppSelector(selectUser);
   let currentRules = useAppSelector(selectRules);
   if (mode === "spock") {
-    currentRules = spockRules;
+    currentRules = SPOCK_RULES;
   } else if (mode === "classic") {
-    currentRules = classicRules;
+    currentRules = CLASSIC_RULES;
   }
   const [gameResult, setGameResult] = useState<resultType>("no");
   const [userOption, setUserOption] = useState<IElement>(
@@ -73,7 +77,9 @@ export default function Game({ mode }: GameProps) {
   }
 
   let gameButtons: JSX.Element[] = [];
-  let count = (mode === "classic") ? 3 : (mode === "spock") ? 5 : elements.length;
+  let count = (mode === "classic") ?
+    CLASSIC_SIZE : (mode === "spock") ?
+      SPOCK_SIZE : elements.length;
   for (let i = 0; i < count; ++i) {
     gameButtons.push(
       <GameButton

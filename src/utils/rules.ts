@@ -1,14 +1,14 @@
-export type Rules = {
+export type TRules = {
   [key: string]: string[]
 }
 
-export const classicRules: Rules = {
+export const CLASSIC_RULES: TRules = {
   "rock": ["scissors"],
   "scissors": ["paper"],
   "paper": ["rock"],
 }
 
-export const spockRules: Rules = {
+export const SPOCK_RULES: TRules = {
   "rock": ["scissors", "lizard"],
   "scissors": ["paper", "lizard"],
   "paper": ["rock", "spock"],
@@ -17,12 +17,12 @@ export const spockRules: Rules = {
 }
 
 // order important!
-export const allObjects: string[] = [
+export const ALL_OBJECTS: string[] = [
   "rock", "scissors", "paper", "lizard", "spock", "unicorn",
   "fire", "donut", "surfer"
 ]
 
-export const customRules: Rules = {
+export const CUSTOM_RULES: TRules = {
   "rock": [
     "scissors",
     "lizard",

@@ -1,17 +1,17 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
 import { fetchUser } from './userAPI';
-import { Rules, customRules } from '../../components/Game/rules';
+import { TRules, CUSTOM_RULES } from '../../utils/rules';
 
 export interface UserState {
   name: string;
-  rules: Rules;
+  rules: TRules;
   status: 'idle' | 'loading' | 'failed';
 }
 
 const initialState: UserState = {
   name: "guest",
-  rules: customRules,
+  rules: CUSTOM_RULES,
   status: 'idle',
 };
 
@@ -33,7 +33,7 @@ export const userSlice = createSlice({
     logout: (state) => {
       state.name = "guest";
     },
-    setRules: (state, action: PayloadAction<Rules>) => {
+    setRules: (state, action: PayloadAction<TRules>) => {
       state.rules = action.payload;
     }
   },

@@ -6,7 +6,7 @@ import {
 
 import Saved from '../modals/Saved';
 import GameButton from '../Game/GameButton';
-import { allObjects, Rules } from '../Game/rules';
+import { ALL_OBJECTS, TRules } from '../../utils/rules';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
@@ -18,9 +18,9 @@ export default function RulesTable() {
   const currentRules = useAppSelector(selectRules);
   const [savedIsOpen, setSavedIsOpen] = useState(false);
 
-  const graph: boolean[][] = allObjects.map((obj) => {
+  const graph: boolean[][] = ALL_OBJECTS.map((obj) => {
     let row: boolean[] = [];
-    for (let i = 0; i < allObjects.length; ++i) {
+    for (let i = 0; i < ALL_OBJECTS.length; ++i) {
       row.push(false);
     }
     // Перебор всех побежденных
@@ -32,7 +32,7 @@ export default function RulesTable() {
 
   const [userTable, setUserTable] = useState(graph);
 
-  let objectsIcons = allObjects.map(obj =>
+  let objectsIcons = ALL_OBJECTS.map(obj =>
     <TableCell align="center">
       <GameButton
         img={elementKeys[obj].img}
@@ -51,12 +51,12 @@ export default function RulesTable() {
   }
 
   const saveSettings = () => {
-    let rules: Rules = {};
-    for (let i = 0; i < allObjects.length; ++i) {
-      rules[allObjects[i]] = [];
-      for (let j = 0; j < allObjects.length; ++j) {
+    let rules: TRules = {};
+    for (let i = 0; i < ALL_OBJECTS.length; ++i) {
+      rules[ALL_OBJECTS[i]] = [];
+      for (let j = 0; j < ALL_OBJECTS.length; ++j) {
         if (userTable[i][j]) {
-          rules[allObjects[i]].push(allObjects[j]);
+          rules[ALL_OBJECTS[i]].push(ALL_OBJECTS[j]);
         }
       }
     }
