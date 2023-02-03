@@ -31,7 +31,6 @@ export default function App() {
         justifyContent: 'center',
         flexDirection: 'column',
         minHeight: '100vh',
-        backgroundImage: "/img/bg1.jpg",
       }}>
         <Box sx={{
           display: 'flex',
